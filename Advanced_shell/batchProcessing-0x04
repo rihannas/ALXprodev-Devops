@@ -6,6 +6,9 @@ mkdir -p pokemon_data
 # List of Pokémon to fetch
 pokemons=("bulbasaur" "ivysaur" "venusaur" "charmander" "charmeleon")
 
+# Trap to clean up background jobs on exit or interruption
+trap 'echo "Stopping all background jobs..."; kill $(jobs -p) 2>/dev/null' EXIT
+
 # Function to fetch a single Pokémon
 fetch_pokemon() {
     local pokemon=$1
